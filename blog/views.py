@@ -4,8 +4,8 @@ from .models import Post
 
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
-    template_name = 'index.html'
+    template_name = 'blogs/index.html'
 
 class Postdetail(generic.DetailView):
     model = Post
-    template_name = 'detail.html'
+    template_name = 'blogs/detail.html'
