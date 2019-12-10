@@ -1,0 +1,10 @@
+.navbar {
+    overflow: hidden;
+    position: sticky;
+}
+.container {
+    margin-top: 16px;
+}
+.card-footer {
+    text-align: center;
+}
