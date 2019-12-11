@@ -13,7 +13,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.info(request, 'You have been logged out.')
-    return redirect('blogs:index')
+    return redirect('/blogs')
 
 
 def authenticate(request):
@@ -22,12 +22,12 @@ def authenticate(request):
 
     user = auth.authenticate(request, username=username, password=password)
     if not user:
-        messages.error(request, 'Login failed. Please try again.')
+        messages.error(request, 'Invalid username/password')
         return redirect_back(request)
-    
+
     auth.login(request, user)
     messages.info(request, 'You are now logged in as {}.'.format(username))
-    return redirect('blogs:index')
+    return redirect('/blogs')
 
 
 def signup(request):
@@ -39,6 +39,7 @@ def signup_submit(request):
     email = request.POST.get('email')
     username = request.POST.get('username')
     password = request.POST.get('password')
+    confirm_password = request.POST.get('confirm_password')
     first_name = request.POST.get('first_name')
     last_name = request.POST.get('last_name')
 
@@ -50,7 +51,12 @@ def signup_submit(request):
 
     # Validate email is not already taken.
     if User.objects.filter(email=email).exists():
-        messages.error(request, 'Email {} is already taken.'.format(email))
+        messages.error(
+            request, 'user with email {} already exists.'.format(email))
+        return redirect_back(request)
+
+    if not password == confirm_password:
+        messages.error(request, 'Passwords don\'t match')
         return redirect_back(request)
 
     try:
@@ -69,7 +75,7 @@ def signup_submit(request):
         return redirect_back(request)
 
     messages.info(request, 'User has been created, you can login now.')
-    return redirect('login')
+    return redirect('/login')
 
 
 def redirect_back(request):
