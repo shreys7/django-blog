@@ -1,7 +1,6 @@
 from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 
@@ -9,11 +8,10 @@ def login(request):
     return render(request, 'login.html')
 
 
-@login_required
 def logout(request):
     auth.logout(request)
     messages.info(request, 'You have been logged out.')
-    return redirect('/blogs')
+    return redirect_back(request)
 
 
 def authenticate(request):
@@ -52,7 +50,7 @@ def signup_submit(request):
     # Validate email is not already taken.
     if User.objects.filter(email=email).exists():
         messages.error(
-            request, 'user with email {} already exists.'.format(email))
+            request, 'User with email {} already exists.'.format(email))
         return redirect_back(request)
 
     if not password == confirm_password:
