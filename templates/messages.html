@@ -1,0 +1,12 @@
+{% if messages %}
+ <!-- TODO: Learn how to replace this with a toast -->
+<div class="alert alert-info" role="alert">
+    <ul class="messages list-unstyled">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

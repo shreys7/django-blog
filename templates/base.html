@@ -10,7 +10,8 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!--- Our CSS file -->
+  
+  <!--- Our CSS files -->
   <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 
   {% block title %}
@@ -58,6 +59,16 @@
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0" 
+        action="{% if user.is_authenticated %} {% url 'logout' %} {% else %} {% url 'login' %} {% endif %}">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          {% if user.is_authenticated %}
+            Logout
+          {% else %}
+            Login
+          {% endif %}
+        </button>
       </form>
     </div>
   </nav>

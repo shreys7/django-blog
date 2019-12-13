@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Login</title>
+{% endblock %}
+
+{% block content %}
+{% include 'messages.html' %}
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="card" style="width: 40rem;">
+            <div class="card-header">
+                <h3>Signup</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'signup_submit' %}">
+                    {% csrf_token %}
+                    <div class="input-group form-group">
+                        <input type="text" class="form-control" name="first_name" placeholder="First name" required>
+                    </div>
+                    <div class="input-group form-group">
+                        <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+                    </div>
+                    <div class="input-group form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-group form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="input-group form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="input-group form-group">
+                        <input type="password" class="form-control" name="confirm_password"
+                            placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <input type="submit" value="Signup" class="btn btn-outline-success">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
