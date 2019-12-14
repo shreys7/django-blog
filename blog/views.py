@@ -34,5 +34,31 @@ def post_detail(request, slug):
         'comments': comments
     })
 
+def create_blog(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+
+        slug_delimiter = '-'
+        try:
+            post = Post.objects.create(
+                title=title,
+                content=content,
+                slug=slug_delimiter.join(title.lower().split(' ')),
+                author=request.user,
+                status=1
+            )
+        except:
+            post = None
+
+        if not post:
+            messages.error(request, 'Could not create post')
+            return redirect_back(request)
+        else:
+            messages.success(request, 'Blog was created successfully')
+            return redirect('/blogs')
+    else:
+        return render(request, 'blogs/create_blog.html')
+
 def redirect_back(request):
     return redirect(request.META.get('HTTP_REFERER'))
