@@ -9,6 +9,15 @@
 
 <!-- Blogs -->
 <div class="container">
+    <div>
+        <span>
+            {% if user.is_authenticated %}
+            Click <a href="{% url 'create_blog' %}">here</a> to create your own blog
+            {% else %}
+            You need to <a href="{% url 'login' %}">login</a> to create your own blog
+            {% endif %}
+        </span>
+    </div>
     <div class="row">
         {% for post in post_list %}
         <div class="col-sm-4 d-flex">

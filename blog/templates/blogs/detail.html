@@ -24,7 +24,7 @@
                 {% if user.is_authenticated %}
                 <form action="" method="POST" class="form-group">
                     {% csrf_token %}
-                    <textarea class="form-control" rows="3" name="body" placeholder="Comment body goes here"></textarea>
+                    <textarea class="form-control" rows="3" name="body" placeholder="Comment body goes here" required></textarea>
                     <button class="btn btn-outline-success" type="submit" style="margin-top: 10px;">Comment</button>
                 </form>
                 {% else %}
