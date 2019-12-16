@@ -37,7 +37,7 @@
   <script src="https://kit.fontawesome.com/15974f9624.js" crossorigin="anonymous"></script>
 
   <!-- Navbar  -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="overflow:visible;">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -48,16 +48,31 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <form class="form-inline my-2 my-lg-0" 
-        action="{% if user.is_authenticated %} {% url 'logout' %} {% else %} {% url 'login' %} {% endif %}">
-        <button class="btn btn-outline-success" type="submit" style="margin-left: 8px;">
-          {% if user.is_authenticated %}
-            Logout
-          {% else %}
-            Login
-          {% endif %}
-        </button>
+      {% if not user.is_authenticated %}
+      <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'login' %}" style="margin-left: 8px;">
+        {% csrf_token %}
+        <button class="btn btn-outline-success" type="submit">Login</button>
       </form>
+      {% else %}
+      <form action="">
+        {% csrf_token %}
+        <div class="btn-group" style="margin-left: 8px;">
+          <button 
+            type="button" 
+            class="btn btn-outline-success dropdown-toggle" 
+            data-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+          >
+            {{ user.username }}
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="{% url 'profile' user.username%}">Profile</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+          </div>
+        </div>
+      </form>
+      {% endif %}
     </div>
   </nav>
 
