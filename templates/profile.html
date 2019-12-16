@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{ user.username }}</title>
+{% endblock %}
+
+{% block content %}
+{% include 'messages.html' %}
+
+<div class="container">
+    <h1>
+        {{ user.first_name }} {{ user.last_name }}
+    </h1>
+    <hr>
+    <h3 style="color: gray;">
+        Blogs ({{blog_posts.count}})
+    </h3>
+    {% for post in blog_posts %}
+    <div class="col-sm-7 d-flex">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                <p class="card-text">{{post.content|slice:":200" }}...</p>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'detail' post.slug  %}">Read More</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
