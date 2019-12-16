@@ -13,6 +13,9 @@
                 <!-- Blog Content -->
                 <h1>{{ post.title }}</h1>
                 <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+                {% if post.image_src %}
+                    <img class="card-img-top" src="{{ post.image_src }}" alt="Blog image">
+                {% endif %}
                 <p class="card-text ">{{ post.content | safe |linebreaks }}</p>
 
                 <!-- Comments -->
