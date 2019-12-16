@@ -75,6 +75,14 @@ def signup_submit(request):
     messages.info(request, 'User has been created, you can login now.')
     return redirect('/login')
 
+def profile(request, username):
+    user = request.user
+    blog_posts = user.blog_posts.all()
+    template_name = 'profile.html'
+
+    return render(request, template_name, {
+        'blog_posts': blog_posts
+    })
 
 def redirect_back(request):
     return redirect(request.META.get('HTTP_REFERER'))

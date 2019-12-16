@@ -9,6 +9,7 @@ urlpatterns = [
     path('authenticate/', auth_views.authenticate, name='authenticate'),
     path('signup', auth_views.signup, name='signup'),
     path('signup/submit', auth_views.signup_submit, name='signup_submit'),
+    path('users/<str:username>', auth_views.profile, name='profile'),
     path('', views.index),
     path('admin/', admin.site.urls),
     path('blogs/', include('blog.urls'))
