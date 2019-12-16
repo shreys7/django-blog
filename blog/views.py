@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views import generic
 from .models import Post, Comment
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 
 
 class PostList(generic.ListView):
@@ -38,6 +39,11 @@ def create_blog(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
+        
+        image = request.FILES['image']
+        fs = FileSystemStorage()
+        filename = fs.save(image.name, image)
+        uploaded_file_url = fs.url(filename)
 
         slug_delimiter = '-'
         try:
@@ -46,6 +52,7 @@ def create_blog(request):
                 content=content,
                 slug=slug_delimiter.join(title.lower().split(' ')),
                 author=request.user,
+                image_src=uploaded_file_url,
                 status=1
             )
         except:
