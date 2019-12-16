@@ -11,7 +11,7 @@ def make_published(self, request, queryset):
     self.message_user(request, "%s successfully marked as published." % message_bit)
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'status', 'created_on')
+    list_display = ('title', 'slug', 'status', 'created_on', 'image_src')
     list_filter = ('status',)
     search_fields = ['title', 'content']
     prepoulated_fields = {'slug': ('title',)}

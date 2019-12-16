@@ -22,6 +22,9 @@
         {% for post in post_list %}
         <div class="col-sm-4 d-flex">
             <div class="card mt-4">
+                {% if post.image_src %}
+                <img class="card-img-top" src="{{ post.image_src}}" alt="Blog image">
+                {% endif %}
                 <div class="card-body">
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
