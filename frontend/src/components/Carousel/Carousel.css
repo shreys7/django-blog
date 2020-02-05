@@ -1,0 +1,10 @@
+.Image{
+    width: 100%;
+    height: 500px;
+}
+
+.CarouselCaption{
+    right: 70% !important;
+    bottom: 200px !important;
+    text-align: left !important;
+}

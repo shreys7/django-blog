@@ -1,8 +1,14 @@
 import React from 'react'
-import {NavbarComponent} from '../../components/Navbar/Navbar.js'
-
+import CustomNavbar from '../../components/Navbar/Navbar.js'
+import CustomCarousel from '../../components/Carousel/Carousel.js'
+import './home.css'
 export class Home extends React.Component {
-    render(){
-        return <NavbarComponent/>
+    render() {
+        return (
+            <div>
+                <CustomNavbar />
+                <CustomCarousel/>
+            </div>
+        )
     }
 }
