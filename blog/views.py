@@ -6,7 +6,7 @@ from django.core.files.storage import FileSystemStorage
 
 
 class PostList(generic.ListView):
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    queryset = Post.objects.order_by('-created_on')
     template_name = 'blogs/index.html'
 
 def post_detail(request, slug):
@@ -52,8 +52,7 @@ def create_blog(request):
                 content=content,
                 slug=slug_delimiter.join(title.lower().split(' ')),
                 author=request.user,
-                image_src=uploaded_file_url,
-                status=1
+                image_src=uploaded_file_url
             )
         except:
             post = None
