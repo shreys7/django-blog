@@ -1,0 +1,34 @@
+.Image{
+    width: 100%;
+    height: 500px;
+}
+
+.carousel-caption{
+    /* position: absolute !important; */
+    right: 50% !important;
+    bottom: 100px !important;
+    text-align: left !important;
+}
+
+.carouselLabels{
+    overflow: hidden;
+    white-space: nowrap;
+}
+.carouselLabel{
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: small;
+    padding: 5px 10px;
+    color: white;
+}
+.carouselBlogInfo{
+    color: white;
+    font-size: small;
+    margin: 0px 0px 10px 0px;
+}
+.calenderIcon{
+    height:12px;
+    width: 12px;;
+}

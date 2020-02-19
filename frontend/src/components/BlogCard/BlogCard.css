@@ -1,0 +1,43 @@
+.image{
+    height: 100%;
+    width: 100%;
+}
+.cardWrapper{
+    border: 1px solid lightgray;
+    margin-bottom: 20px;
+}
+.cardBody{
+    margin:5%;
+    line-height: 1;
+}
+.blogInfo{
+    color: gray;
+    font-size: small;
+    margin: 0px 0px 10px 0px;
+}
+.commentIcon{
+    height: 12px;
+    width: 12px;
+}
+.blogTitle{
+    font-size: x-large;
+    font-weight: bold;
+    margin: 0px 0px 10px 0px;
+}
+.blogBody{
+    font-size: medium;
+    margin: 0px 0px 10px 0px;
+}
+.cardLabels{
+    overflow: hidden;
+    white-space: nowrap;
+}
+.cardLabel{
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    font-size: small;
+    padding: 5px 10px;
+    color: gray;
+}
